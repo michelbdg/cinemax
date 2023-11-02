@@ -1,36 +1,35 @@
 import { useEffect, useState } from "react";
 import "./styles.css";
-//Import du logo pour interpolation dans jsx
+// Import du logo pour interpolation dans JSX
 import cinemaxLogo from "./assets/cinemax-lg.png";
 
 // Nos composants
-import Search from "./components/Search.js";
-import Movies from "./components/Movies.js";
+import Search from "./components/Search";
+import Movies from "./components/Movies";
 
 export default function App() {
   // OMDB API
-  const API = "https://www.omdbapi.com/?i=tt3896198&apikey=dd3ad7fd";
-
-  // States (Etats)
+  const API = "https://www.omdbapi.com/?apikey=ffe9f21a";
+  // States (États)
   const [movies, setMovies] = useState([]);
   const [search, setSearch] = useState("");
-
-  // Fonction : searcMovies()
+  // Fonction : searchMovies()
   const searchMovies = async (searchValue) => {
     // Fetch de l'API OMDB
-    const response = await fetch(API + "&s" + searchValue);
+    const response = await fetch(API + "&s=" + searchValue);
     const data = await response.json();
 
+    // On modifie le tableau si l'API retourne des données
     if (data.Search) {
-      setMovies([]);
+      setMovies(data.Search);
     }
-    // Vérifier les infos reçu par l'API
-    console.log(data);
-  };
 
-  //useEffect pour lancer la recherche des films
+    // Vérifier les infos reçu par l'API
+    console.log(data.Search);
+  };
+  // useEffect pour lancer la recherche des films
   useEffect(() => {
-    searchMovies("Hunger Games");
+    searchMovies("");
   }, []);
 
   return (

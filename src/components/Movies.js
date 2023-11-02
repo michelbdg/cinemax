@@ -1,13 +1,14 @@
 import React from "react";
 
+// Ce composant représente le résultat de la recherche
 const Movies = ({ movies }) => {
-  //lien IMDB
+  // Lien IMDB
   const imdb = "https://imdb.com/title/";
 
   return (
     <div className="movies">
       {movies.map((movie) => (
-        <div className="movie" key={movie.imdbId}>
+        <div className="movie" key={movie.imdbID}>
           <div className="movie-info">
             <img
               src={
@@ -19,8 +20,8 @@ const Movies = ({ movies }) => {
             />
             <h3>{movie.Title}</h3>
             <p>
-              Voir les détails{" "}
-              <a href={imdb + movie.imdbId} target="_blank">
+              Voir les détails
+              <a href={imdb + movie.imdbID} target="_blank">
                 IMDB
               </a>
             </p>
